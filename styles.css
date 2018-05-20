@@ -1,3 +1,9 @@
 body {
     background-color: rgb(0, 0, 0);
+    height: 1920px;
+    width: 1080px;
+}
+
+.time{
+    font-size: 50px;
 }
