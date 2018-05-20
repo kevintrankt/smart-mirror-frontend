@@ -29,6 +29,9 @@
         function startTime() {
             var today = new Date();
             var h = today.getHours();
+            if (h > 12) {
+                h = h - 12;
+            }
             var m = today.getMinutes();
             var s = today.getSeconds();
             // add a zero in front of numbers<10
@@ -39,13 +42,18 @@
                 startTime()
             }, 500);
         }
-        startTime();
+
+        $(document).ready(function () {
+            startTime();
+        });
+
+
     </script>
 </head>
 
 <body>
     <div class="mirror">
-        <div class="time" id="time">9:00 am</div>
+        <div class="time" id="time"></div>
     </div>
 </body>
 
