@@ -15,9 +15,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $(function () {
-            $(".time").draggable();
-        });
 
         function checkTime(i) {
             if (i < 10) {
@@ -44,7 +41,21 @@
         }
 
         $(document).ready(function () {
+            var sPositions = localStorage.positions || "{}",
+                positions = JSON.parse(sPositions);
+            $.each(positions, function (id, pos) {
+                $("#" + id).css(pos)
+            })
+            $("#time").draggable({
+                containment: "#mirror",
+                scroll: false,
+                stop: function (event, ui) {
+                    positions[this.id] = ui.position
+                    localStorage.positions = JSON.stringify(positions)
+                }
+            });
             startTime();
+
             $(".greeting").fadeOut(2000);
         });
 
