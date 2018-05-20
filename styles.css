@@ -1,10 +1,12 @@
-body {
+
+.mirror{
     background-color: rgb(0, 0, 0);
     height: 1920px;
     width: 1080px;
 }
 
 .time{
-    font-size: 50px;
+    font-size: 150px;
     color: white;
+    font-family: 'Rubik', sans-serif;
 }
