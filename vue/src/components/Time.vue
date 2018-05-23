@@ -1,21 +1,36 @@
+// https://vuejsexamples.com/vue-component-for-draggable-and-resizable-elements/
 <template>
   <div class="time">
       <h1>{{hours}}:{{minutes}} {{hourtime}}</h1>
+
+        <VueDragResize :isActive="true" :w="200" :h="200" v-on:resizing="resize">
+            <div class="drag">            
+                <h1>{{hours}}:{{minutes}} {{hourtime}}</h1>
+            </div>
+        </VueDragResize>
   </div>
 </template>
 
 <script>
 import { getHourTime, getZeroPad } from "./Filters";
+import VueDragResize from "vue-drag-resize";
 
 export default {
   name: "Time",
+  components: {
+    VueDragResize
+  },
   data() {
     return {
       timeData: "blank",
       hours: "",
       minutes: "",
       seconds: "",
-      hourtime: ""
+      hourtime: "",
+      width: 0,
+      height: 0,
+      top: 0,
+      left: 0
     };
   },
   methods: {
@@ -26,9 +41,14 @@ export default {
       this.seconds = getZeroPad(now.getSeconds());
       this.hourtime = getHourTime(this.hours);
       this.hours = this.hours % 12 || 12;
+    },
+    resize(newRect) {
+      this.width = newRect.width;
+      this.height = newRect.height;
+      this.top = newRect.top;
+      this.left = newRect.left;
     }
   },
-
   mounted() {
     setInterval(this.updateDateTime, 1000);
   }
@@ -38,9 +58,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  font-size: 70px;
   margin: 0;
+  white-space: nowrap;
 }
+
+.drag {
+  background-color: khaki;
+  width: 100%;
+  height: 100%;
+}
+
 .time {
   width: max-content;
 }
