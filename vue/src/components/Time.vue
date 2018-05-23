@@ -1,12 +1,10 @@
 // https://vuejsexamples.com/vue-component-for-draggable-and-resizable-elements/
 <template>
   <div class="time">
-      <h1>{{hours}}:{{minutes}} {{hourtime}}</h1>
-
-        <VueDragResize :isActive="true" :w="200" :h="200" v-on:resizing="resize">
-            <div class="drag">            
-                <h1>{{hours}}:{{minutes}} {{hourtime}}</h1>
-            </div>
+        <VueDragResize :isActive="true" :w="400" :h="200" v-on:resizing="resize">
+            <!-- <div class="drag">             -->
+                <h1 v-bind:style="{fontSize:fontSizeScale+'px'}">{{hours}}:{{minutes}} {{hourtime}}</h1>
+            <!-- </div> -->
         </VueDragResize>
   </div>
 </template>
@@ -30,7 +28,8 @@ export default {
       width: 0,
       height: 0,
       top: 0,
-      left: 0
+      left: 0,
+      fontSizeScale: 70
     };
   },
   methods: {
@@ -47,6 +46,7 @@ export default {
       this.height = newRect.height;
       this.top = newRect.top;
       this.left = newRect.left;
+      this.fontSizeScale = this.width / 6;
     }
   },
   mounted() {
