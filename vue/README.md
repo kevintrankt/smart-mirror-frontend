@@ -1,6 +1,6 @@
 # vue
 
-> Smart Mirror Vue Project
+> Smart Mirror Vue.js project
 
 ## Build Setup
 
