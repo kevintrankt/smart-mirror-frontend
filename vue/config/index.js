@@ -9,7 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/smart-mirror-frontend/vue/dist/',
     proxyTable: {},
 
     // Various Dev Server settings
